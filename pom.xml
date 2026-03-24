@@ -87,15 +87,17 @@
 
         <!-- Surefire Plugin -->
         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.2.5</version>
-            <configuration>
-                <suiteXmlFiles>
-                    <suiteXmlFile>testng.xml</suiteXmlFile>
-                </suiteXmlFiles>
-            </configuration>
-        </plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.2.5</version>
+    <configuration>
+        <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+        </suiteXmlFiles>
+        <!-- ✅ Generate XML reports for GitHub Actions -->
+        <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+    </configuration>
+</plugin>
 
         <!-- ✅ Add test classes to main classpath -->
         <plugin>
