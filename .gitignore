@@ -1,0 +1,48 @@
+# Eclipse IDE files
+.classpath
+.project
+.settings/
+.factorypath
+
+# Maven build output
+target/
+
+# Compiled class files
+*.class
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keep test outputs
+!test-output/
+!test-output/reports/
+!test-output/screenshots/
+```
+
+4. Scroll down → **Commit message:** `Add .gitignore`
+5. Click **Commit changes**
+
+---
+
+## Step 4: Verify Your Repo Looks Clean
+
+Your final repo should look like this:
+```
+Afrin111/Multibankgroup_automation   🔓 Public
+├── 📁 src
+├── 📁 test-output
+├── 📄 .gitignore        ← newly added
+├── 📄 README.md         ← auto renders below
+├── 📄 pom.xml
+└── 📄 testng.xml
+```
+
+---
+
+## Step 5: Copy & Share Your Repo Link
+```
+https://github.com/Afrin111/Multibankgroup_automation
