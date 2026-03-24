@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="mb.io Automation Suite" verbose="1" parallel="none">
+
+    <test name="Navigation Tests">
+        <classes>
+            <class name="com.multibank.tests.NavigationTest"/>
+        </classes>
+    </test>
+
+    <test name="Trading / Explore Tests">
+        <classes>
+            <class name="com.multibank.tests.TradingTest"/>
+        </classes>
+    </test>
+
+    <test name="Content / Features Tests">
+        <classes>
+            <class name="com.multibank.tests.ContentTest"/>
+        </classes>
+    </test>
+
+</suite>

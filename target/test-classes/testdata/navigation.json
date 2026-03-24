@@ -1,0 +1,20 @@
+{
+  "mainNavItems": [
+    { "name": "Explore",   "url": "https://mb.io/en-AE/explore" },
+    { "name": "Features",  "url": "https://mb.io/en-AE/features" },
+    { "name": "Company",   "url": "https://mb.io/en-AE/company" },
+    { "name": "$MBG",      "url": "https://token.multibankgroup.com/en" }
+  ],
+  "authButtons": [
+    { "name": "Sign in", "url": "https://trade.mb.io/login" },
+    { "name": "Sign up", "url": "https://trade.mb.io/register" }
+  ],
+  "footerLinks": [
+    { "name": "Terms & Conditions",    "url": "/en-AE/about/terms-conditions" },
+    { "name": "Privacy Policy",        "url": "/en-AE/about/privacy-policy" },
+    { "name": "Client Agreement",      "url": "/en-AE/about/client-agreement" },
+    { "name": "Cookie Policy",         "url": "/en-AE/about/cookie-policy" },
+    { "name": "Acceptable Use Policy", "url": "/en-AE/about/acceptable-use-policy" },
+    { "name": "Contact Us",            "url": "/en-AE/support/contact-us" }
+  ]
+}

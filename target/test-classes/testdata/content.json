@@ -1,0 +1,48 @@
+{
+  "homePage": {
+    "title": "VARA Regulated Crypto Exchange | Trade in UAE | mb.io",
+    "heroHeading": "Crypto for everyone",
+    "heroSubText": "Simple, secure and speedy.",
+    "ctaButtons": ["Download the app", "Open an account"]
+  },
+  "explorePage": {
+    "title": "Explore Crypto Markets | Live Prices & Data | mb.io",
+    "heading": "Markets at your fingertips",
+    "marketSections": ["Top Gainers", "Trending Now", "Top Losers"],
+    "marketSentimentLabel": "Market sentiment"
+  },
+  "featuresPage": {
+    "title": "Crypto Trading Features | Advanced Tools | mb.io",
+    "heading": "The power of crypto is yours",
+    "subHeading": "Diversify your crypto portfolio on a highly regulated platform with segregated funds.",
+    "featureSections": [
+      "Easily explore opportunities",
+      "Smart asset insights at a glance",
+      "Buy, sell, convert in three taps",
+      "Earn yield that feels rewarding",
+      "Clearly presented wallet portfolio",
+      "$MBG unlocks mb.io benefits",
+      "VIP Experience benefits that scale with you"
+    ],
+    "solutionCards": [
+      "Fiat on/off ramps",
+      "Heavily regulated",
+      "Seamless OTC execution"
+    ]
+  },
+  "footer": {
+    "copyright": "2026 Copyright. All Rights Reserved. mb.io",
+    "legalLinks": [
+      "Terms & Conditions",
+      "Privacy Policy",
+      "Client Agreement",
+      "Cookie Policy",
+      "Acceptable Use Policy"
+    ],
+    "supportLinks": ["Contact Us"],
+    "paymentMethods": [
+      "Mastercard", "Visa", "American Express",
+      "PIX", "UnionPay", "SEPA", "Swift", "SPEI"
+    ]
+  }
+}

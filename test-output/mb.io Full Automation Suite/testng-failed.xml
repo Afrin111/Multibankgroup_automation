@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [mb.io Full Automation Suite]">
+  <test thread-count="5" name="Navigation Tests(failed)">
+    <classes>
+      <class name="com.multibank.tests.NavigationTest">
+        <methods>
+          <include name="testSignInButtonDisplayed"/>
+          <include name="testFeaturesNavigation"/>
+          <include name="testTrendingNowSectionDisplayed"/>
+          <include name="testMainNavLinksPresent"/>
+          <include name="testExploreNavigation"/>
+          <include name="setUp"/>
+          <include name="testTopLosersSectionDisplayed"/>
+          <include name="testHeroHeading"/>
+          <include name="tearDownSuite"/>
+          <include name="testCompanyNavigation"/>
+          <include name="testSignUpNavigation"/>
+          <include name="tearDown"/>
+          <include name="initPage"/>
+          <include name="testFooterCopyrightDisplayed"/>
+          <include name="testHeroSubText"/>
+          <include name="testDownloadAppButton"/>
+          <include name="testSignUpButtonDisplayed"/>
+          <include name="testOpenAccountButton"/>
+          <include name="setUpSuite"/>
+          <include name="testSignInNavigation"/>
+          <include name="testTopGainersSectionDisplayed"/>
+          <include name="testFooterLinksPresent"/>
+          <include name="testPageTitle"/>
+        </methods>
+      </class> <!-- com.multibank.tests.NavigationTest -->
+    </classes>
+  </test> <!-- Navigation Tests(failed) -->
+  <test thread-count="5" name="Trading Tests(failed)">
+    <classes>
+      <class name="com.multibank.tests.TradingTest">
+        <methods>
+          <include name="testDepositPromoDisplayed"/>
+          <include name="setUp"/>
+          <include name="testInstantBuyPromoDisplayed"/>
+          <include name="testEarnPromoDisplayed"/>
+          <include name="testSpotMarketSectionDisplayed"/>
+          <include name="tearDownSuite"/>
+          <include name="initPage"/>
+          <include name="testExplorePageHeading"/>
+          <include name="tearDown"/>
+          <include name="testTopLosersSectionDisplayed"/>
+          <include name="testMarketSentimentDisplayed"/>
+          <include name="setUpSuite"/>
+          <include name="testDownloadAppLinkDisplayed"/>
+          <include name="testTrendingNowSectionDisplayed"/>
+          <include name="testTopGainersSectionDisplayed"/>
+        </methods>
+      </class> <!-- com.multibank.tests.TradingTest -->
+    </classes>
+  </test> <!-- Trading Tests(failed) -->
+  <test thread-count="5" name="Content Tests(failed)">
+    <classes>
+      <class name="com.multibank.tests.ContentTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="testOTCExecutionCardDisplayed"/>
+          <include name="testFiatRampsCardDisplayed"/>
+          <include name="testHomeTrendingNowDisplayed"/>
+          <include name="testHomeTopLosersDisplayed"/>
+          <include name="setUp"/>
+          <include name="setUpSuite"/>
+          <include name="testHomeTopGainersDisplayed"/>
+          <include name="initPages"/>
+          <include name="tearDownSuite"/>
+          <include name="testHeavilyRegulatedCardDisplayed"/>
+        </methods>
+      </class> <!-- com.multibank.tests.ContentTest -->
+    </classes>
+  </test> <!-- Content Tests(failed) -->
+</suite> <!-- Failed suite [mb.io Full Automation Suite] -->

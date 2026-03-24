@@ -1,0 +1,17 @@
+{
+  "marketSections": [
+    { "section": "Top Gainers" },
+    { "section": "Trending Now" },
+    { "section": "Top Losers" }
+  ],
+  "spotPairs": [
+    { "pair": "BTC/USDT", "category": "Spot" },
+    { "pair": "ETH/USDT", "category": "Spot" },
+    { "pair": "BNB/USDT", "category": "Spot" }
+  ],
+  "features": [
+    "Instant Buy",
+    "Panic Sell",
+    "Earn"
+  ]
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [mb.io Navigation Suite]">
+  <test thread-count="5" name="Navigation Test(failed)">
+    <classes>
+      <class name="com.multibank.tests.NavigationTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="initPage"/>
+          <include name="testTrendingNowSectionDisplayed"/>
+          <include name="setUp"/>
+          <include name="testTopLosersSectionDisplayed"/>
+          <include name="setUpSuite"/>
+          <include name="testTopGainersSectionDisplayed"/>
+          <include name="testSignInNavigation"/>
+          <include name="tearDownSuite"/>
+          <include name="testSignUpNavigation"/>
+        </methods>
+      </class> <!-- com.multibank.tests.NavigationTest -->
+    </classes>
+  </test> <!-- Navigation Test(failed) -->
+</suite> <!-- Failed suite [mb.io Navigation Suite] -->
