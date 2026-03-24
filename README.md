@@ -3,6 +3,44 @@
 A Selenium TestNG automation framework for testing the [mb.io](https://mb.io/en-AE) crypto trading platform built with Java, Maven, and ExtentReports.
 
 ---
+![CI/CD Pipeline](https://github.com/Afrin111/Multibankgroup_automation/actions/workflows/automation.yml/badge.svg)
+```
+
+It will show:
+```
+✅ passing   or   ❌ failing
+```
+
+---
+
+## Step 8: Trigger Options
+
+| Trigger | When it runs |
+|---|---|
+| `push to main` | Every time you upload new code |
+| `pull_request` | Every time a PR is created |
+| `workflow_dispatch` | Manual — click "Run workflow" button in Actions tab |
+
+### To run manually:
+1. Go to **Actions** tab
+2. Click **"mb.io Automation CI/CD Pipeline"**
+3. Click **"Run workflow"** button
+4. Click green **"Run workflow"** → tests start immediately
+
+---
+
+## Full CI/CD Flow Summary
+```
+Your Local Eclipse
+      ↓  (upload files)
+GitHub Repository
+      ↓  (auto triggers)
+GitHub Actions Runner
+      ↓  (runs tests)
+Test Results & Reports
+      ↓  (downloadable)
+Artifacts on GitHub
+
 
 ## Table of Contents
 
