@@ -1,15 +1,10 @@
 name: mb.io Automation CI/CD Pipeline
 
 on:
-  # ── Trigger on every push to main branch ──────────────
   push:
     branches: [ main ]
-
-  # ── Trigger on every Pull Request to main ─────────────
   pull_request:
     branches: [ main ]
-
-  # ── Allow manual trigger from GitHub UI ───────────────
   workflow_dispatch:
 
 jobs:
@@ -19,78 +14,72 @@ jobs:
 
     steps:
 
-      # ── Step 1: Checkout code ────────────────────────────
+      # ── Step 1: Checkout code ──────────────────────────────
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # ── Step 2: Set up Java 11 ───────────────────────────
+      # ── Step 2: Set up Java 11 ─────────────────────────────
       - name: Set up JDK 11
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'temurin'
+          cache: maven
 
-      # ── Step 3: Cache Maven dependencies ─────────────────
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
-      # ── Step 4: Install Chrome Browser ───────────────────
+      # ── Step 3: Install Chrome ─────────────────────────────
       - name: Install Google Chrome
         run: |
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
+          google-chrome --version
 
-      # ── Step 5: Verify Chrome installation ───────────────
-      - name: Verify Chrome Version
-        run: google-chrome --version
-
-      # ── Step 6: Update config for headless CI ─────────────
-      - name: Update config for CI environment
+      # ── Step 4: Create output directories ──────────────────
+      - name: Create output directories
         run: |
-          sed -i 's/browser=chrome/browser=headless/' \
-          src/test/resources/config.properties
+          mkdir -p test-output/reports
+          mkdir -p test-output/screenshots
 
-      # ── Step 7: Run Maven Tests ───────────────────────────
+      # ── Step 5: Update config for headless CI ──────────────
+      - name: Set headless browser in config
+        run: |
+          sed -i 's/browser=chrome/browser=headless/g' \
+          src/test/resources/config.properties
+          cat src/test/resources/config.properties
+
+      # ── Step 6: Build project ──────────────────────────────
+      - name: Build with Maven
+        run: mvn clean compile test-compile -B
+
+      # ── Step 7: Run Tests ──────────────────────────────────
       - name: Run Automation Tests
-        run: mvn clean test -DsuiteXmlFile=testng.xml
+        run: mvn test -DsuiteXmlFile=testng.xml -B
         continue-on-error: true
 
-      # ── Step 8: Upload ExtentReport HTML ──────────────────
+      # ── Step 8: Upload Extent HTML Report ──────────────────
       - name: Upload Extent Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ExtentReport
           path: test-output/reports/
           retention-days: 30
 
-      # ── Step 9: Upload Screenshots on Failure ─────────────
+      # ── Step 9: Upload Screenshots ─────────────────────────
       - name: Upload Failure Screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: FailureScreenshots
           path: test-output/screenshots/
           retention-days: 30
 
-      # ── Step 10: Upload TestNG Results ────────────────────
-      - name: Upload TestNG Results
-        uses: actions/upload-artifact@v3
+      # ── Step 10: Upload Surefire Reports ───────────────────
+      - name: Upload Surefire Reports
+        uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TestNG-Results
+          name: TestNG-Surefire-Reports
           path: target/surefire-reports/
           retention-days: 30
-
-      # ── Step 11: Publish TestNG Results ───────────────────
-      - name: Publish TestNG Test Results
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: TestNG Results
-          path: target/surefire-reports/*.xml
-          reporter: java-junit
