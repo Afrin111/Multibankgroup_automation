@@ -1,0 +1,96 @@
+name: mb.io Automation CI/CD Pipeline
+
+on:
+  # ── Trigger on every push to main branch ──────────────
+  push:
+    branches: [ main ]
+
+  # ── Trigger on every Pull Request to main ─────────────
+  pull_request:
+    branches: [ main ]
+
+  # ── Allow manual trigger from GitHub UI ───────────────
+  workflow_dispatch:
+
+jobs:
+  automation-tests:
+    name: Run Selenium TestNG Tests
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ── Step 1: Checkout code ────────────────────────────
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # ── Step 2: Set up Java 11 ───────────────────────────
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      # ── Step 3: Cache Maven dependencies ─────────────────
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      # ── Step 4: Install Chrome Browser ───────────────────
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      # ── Step 5: Verify Chrome installation ───────────────
+      - name: Verify Chrome Version
+        run: google-chrome --version
+
+      # ── Step 6: Update config for headless CI ─────────────
+      - name: Update config for CI environment
+        run: |
+          sed -i 's/browser=chrome/browser=headless/' \
+          src/test/resources/config.properties
+
+      # ── Step 7: Run Maven Tests ───────────────────────────
+      - name: Run Automation Tests
+        run: mvn clean test -DsuiteXmlFile=testng.xml
+        continue-on-error: true
+
+      # ── Step 8: Upload ExtentReport HTML ──────────────────
+      - name: Upload Extent Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: ExtentReport
+          path: test-output/reports/
+          retention-days: 30
+
+      # ── Step 9: Upload Screenshots on Failure ─────────────
+      - name: Upload Failure Screenshots
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: FailureScreenshots
+          path: test-output/screenshots/
+          retention-days: 30
+
+      # ── Step 10: Upload TestNG Results ────────────────────
+      - name: Upload TestNG Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: TestNG-Results
+          path: target/surefire-reports/
+          retention-days: 30
+
+      # ── Step 11: Publish TestNG Results ───────────────────
+      - name: Publish TestNG Test Results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: TestNG Results
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
