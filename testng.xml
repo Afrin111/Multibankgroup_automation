@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="mb.io Automation Suite" verbose="1" parallel="none">
 
-    <test name="Navigation Tests">
-        <classes>
-            <class name="com.multibank.tests.NavigationTest"/>
-        </classes>
-    </test>
+<suite name="mb.io Cross-Browser Suite" verbose="1" parallel="suites" thread-count="3">
 
-    <test name="Trading / Explore Tests">
-        <classes>
-            <class name="com.multibank.tests.TradingTest"/>
-        </classes>
-    </test>
+    <!-- ══ CHROME ══════════════════════════════════════════ -->
+    <suite-files>
+        <suite-file path="testng-chrome.xml"/>
+    </suite-files>
 
-    <test name="Content / Features Tests">
-        <classes>
-            <class name="com.multibank.tests.ContentTest"/>
-        </classes>
-    </test>
+    <!-- ══ FIREFOX ═════════════════════════════════════════ -->
+    <suite-files>
+        <suite-file path="testng-firefox.xml"/>
+    </suite-files>
+
+    <!-- ══ EDGE ════════════════════════════════════════════ -->
+    <suite-files>
+        <suite-file path="testng-edge.xml"/>
+    </suite-files>
 
 </suite>
