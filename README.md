@@ -1,8 +1,12 @@
 # Multibankgroup_automation
+#TASK2 added at the bottom. 
 
 A Selenium TestNG automation framework for testing the [mb.io](https://mb.io/en-AE) crypto trading platform built with Java, Maven, and ExtentReports.
 
 ---
+TASK 1
+--------------
+
 ![CI/CD Pipeline](https://github.com/Afrin111/Multibankgroup_automation/actions/workflows/automation.yml/badge.svg)
 ```
 
@@ -399,6 +403,123 @@ test-output/screenshots/<TestName>_<timestamp>.png
 | Red errors after Maven import | Dependencies not downloaded | Right-click → Maven → Update Project → Force Update |
 
 ---
+
+TASK 2
+----------------
+
+
+Algorithm
+----------------
+
+for each character c in the input:
+    map[c] = map.getOrDefault(c, 0) + 1
+    
+A single O(n) sweep. No sorting needed because insertion order is the desired output order.
+
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+/**
+ * CharacterFrequency
+ *
+ * Counts character occurrences in a string and outputs them
+ * in order of first appearance.
+ *
+ * Assumptions:
+ *   - Case-sensitive: 'A' and 'a' are treated as distinct characters.
+ *   - Whitespace IS counted (e.g. space in "hello world" appears once).
+ *   - All characters (letters, digits, symbols, spaces) are included.
+ *   - Null input is treated as an edge case and handled gracefully.
+ *
+ * Approach:
+ *   A LinkedHashMap is used to map each character to its count while
+ *   preserving insertion (first-appearance) order. A single O(n) pass
+ *   over the string fills the map; a second pass over the map (at most
+ *   n unique entries) builds the output string.
+ *
+ * Time complexity : O(n)  — n = length of input string
+ * Space complexity: O(k)  — k = number of unique characters (≤ n)
+ */
+public class CharacterFrequency {
+
+    /**
+     * Counts character frequencies in the given string.
+     *
+     * @param input the string to analyse
+     * @return a LinkedHashMap of character → frequency, in first-appearance order
+     * @throws IllegalArgumentException if input is null
+     */
+    public static LinkedHashMap<Character, Integer> countFrequencies(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Input string must not be null.");
+        }
+
+        LinkedHashMap<Character, Integer> frequencyMap = new LinkedHashMap<>();
+
+        for (char c : input.toCharArray()) {
+            // getOrDefault keeps the code concise and avoids an explicit null-check
+            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+        }
+
+        return frequencyMap;
+    }
+
+    /**
+     * Formats a frequency map as "char:count" pairs separated by ", ".
+     *
+     * @param frequencyMap the map produced by countFrequencies()
+     * @return formatted string, e.g. "h:1, e:1, l:3, o:2"
+     */
+    public static String formatOutput(LinkedHashMap<Character, Integer> frequencyMap) {
+        if (frequencyMap.isEmpty()) {
+            return "(empty string — no characters found)";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
+            if (sb.length() > 0) sb.append(", ");
+            sb.append(entry.getKey()).append(":").append(entry.getValue());
+        }
+        return sb.toString();
+    }
+
+    // -------------------------------------------------------------------------
+    // Demo / manual tests
+    // -------------------------------------------------------------------------
+    public static void main(String[] args) {
+        String[] testCases = {
+            "hello world",   // example from the spec
+            "",              // empty string
+            "aAbBcC",        // case-sensitivity check
+            "!!!",           // repeated special characters
+            "Java 21",       // mixed: letters, digit, space
+            "racecar"        // palindrome with clear frequency pattern
+        };
+
+        for (String test : testCases) {
+            System.out.println("Input  : \"" + test + "\"");
+            try {
+                LinkedHashMap<Character, Integer> map = countFrequencies(test);
+                System.out.println("Output : " + formatOutput(map));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error  : " + e.getMessage());
+            }
+            System.out.println();
+        }
+
+        // Explicit null test
+        System.out.println("Input  : null");
+        try {
+            countFrequencies(null);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error  : " + e.getMessage());
+        }
+    }
+}
+
+
+
 
 ## Author
 AFRIN AMEER KHAN
