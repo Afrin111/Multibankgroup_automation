@@ -13,9 +13,9 @@ import java.lang.reflect.Method;
 
 public class BaseTest {
 
-    protected WebDriver    driver;
+    protected WebDriver     driver;
     protected ExtentReports extent;
-    protected ExtentTest   test;
+    protected ExtentTest    test;
 
     @BeforeSuite
     public void setUpSuite() {
@@ -23,9 +23,19 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void setUp(Method method) {
-        driver = DriverFactory.initDriver();
-        test   = extent.createTest(method.getName());
+    @Parameters({"browser"})
+    public void setUp(@Optional("chrome") String browser, Method method) {
+
+        // ── Override config browser with TestNG parameter ───
+        System.setProperty("browser", browser);
+
+        driver = DriverFactory.initDriver(browser);
+        test   = extent.createTest(
+                    method.getName() + " [" + browser.toUpperCase() + "]"
+                 );
+        test.info("Browser : " + browser.toUpperCase());
+        test.info("URL     : " + ConfigReader.getMarketingUrl());
+
         driver.get(ConfigReader.getMarketingUrl());
     }
 
